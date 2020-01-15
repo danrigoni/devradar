@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './global.css'
 import './App.css'
 import './Sidebar.css'
 import './Main.css'
 
-
-
 // component: isolated block of HTML, CSS, JS, which does not interfere with the rest of the application
 // property: information that a Father component passes to the Child component
 // state: information held by the component (remember: immutability)
 
 function App() {
+  const [latitude, setLatitude] =  useState('')
+  const [longitude, setLongitude] =  useState('')
 
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+
+        setLatitude(latitude);
+        setLongitude(longitude)
+      },
+      (err) => {
+        console.log(err);
+      },
+      {
+        timeout: 30000,
+      }
+    );
+  }, []) 
 
   return (
     <div id="app">
@@ -34,12 +51,26 @@ function App() {
           <div className="input-group">
             <div className="input-block">
               <label htmlFor="latitude">Latitude</label>
-              <input name="latitude" id="latitude" required />
+              <input 
+              type="number" 
+              name="latitude" 
+              id="latitude" 
+              required 
+              value={latitude}
+              onChange={e => setLatitude(e.target.value)}
+            />
             </div>
 
             <div className="input-block">
               <label htmlFor="longitude">Longitude</label>
-              <input name="longitude" id="longitude" required />
+              <input 
+              type="number" 
+              name="longitude" 
+              id="longitude" 
+              required 
+              value={longitude} 
+              onChange={e => setLongitude(e.target.value)}
+              />
             </div>
           </div>
           
