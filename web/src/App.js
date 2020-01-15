@@ -46,7 +46,55 @@ function App() {
       </aside>
 
       <main>
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
+              <div className="user-info">
+                <strong>Carlos Daniel Rigoni</strong>
+                <span>Node.js, ReactJS, React Native</span>
 
+              </div>
+            </header>
+            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
+            <a href="https://github.com/danrigoni">Access github profile</a>
+
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
+              <div className="user-info">
+                <strong>Carlos Daniel Rigoni</strong>
+                <span>Node.js, ReactJS, React Native</span>
+
+              </div>
+            </header>
+            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
+            <a href="https://github.com/danrigoni">Access github profile</a>
+
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
+              <div className="user-info">
+                <strong>Carlos Daniel Rigoni</strong>
+                <span>Node.js, ReactJS, React Native</span>
+
+              </div>
+            </header>
+            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
+            <a href="https://github.com/danrigoni">Access github profile</a>
+
+            <header>
+              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
+              <div className="user-info">
+                <strong>Carlos Daniel Rigoni</strong>
+                <span>Node.js, ReactJS, React Native</span>
+
+              </div>
+            </header>
+            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
+            <a href="https://github.com/danrigoni">Access github profile</a>
+
+
+          </li>
+        </ul>
       </main>
     </div>
   );
