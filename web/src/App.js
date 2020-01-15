@@ -2,6 +2,8 @@ import React from 'react';
 
 import './global.css'
 import './App.css'
+import './Sidebar.css'
+
 
 // component: isolated block of HTML, CSS, JS, which does not interfere with the rest of the application
 // property: information that a Father component passes to the Child component
