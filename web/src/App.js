@@ -3,6 +3,8 @@ import React from 'react';
 import './global.css'
 import './App.css'
 import './Sidebar.css'
+import './Main.css'
+
 
 
 // component: isolated block of HTML, CSS, JS, which does not interfere with the rest of the application
@@ -58,7 +60,9 @@ function App() {
             </header>
             <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
             <a href="https://github.com/danrigoni">Access github profile</a>
+          </li>
 
+          <li className="dev-item">
             <header>
               <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
               <div className="user-info">
@@ -69,7 +73,9 @@ function App() {
             </header>
             <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
             <a href="https://github.com/danrigoni">Access github profile</a>
+          </li>
 
+          <li className="dev-item">
             <header>
               <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
               <div className="user-info">
@@ -80,7 +86,9 @@ function App() {
             </header>
             <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
             <a href="https://github.com/danrigoni">Access github profile</a>
+          </li>
 
+          <li className="dev-item">
             <header>
               <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
               <div className="user-info">
@@ -91,8 +99,6 @@ function App() {
             </header>
             <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
             <a href="https://github.com/danrigoni">Access github profile</a>
-
-
           </li>
         </ul>
       </main>
