@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import './global.css'
+import './App.css'
+
+// component: isolated block of HTML, CSS, JS, which does not interfere with the rest of the application
+// property: information that a Father component passes to the Child component
+// state: information held by the component (remember: immutability)
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <aside>
+
+      </aside>
+
+      <main>
+
+      </main>
     </div>
   );
 }
