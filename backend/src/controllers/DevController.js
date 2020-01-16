@@ -15,6 +15,7 @@ module.exports = {
         if (devExists) return res.json(devExists);
 
         const apiResponse = await axios.get(`https://api.github.com/users/${github}`);
+        console.log(apiResponse);
         
         const { name = login, avatar_url, bio } = apiResponse.data;
         techsArray = str2array(techs)

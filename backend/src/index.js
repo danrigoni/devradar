@@ -4,7 +4,8 @@ const cors = require('cors');
 const routes = require('./routes');
 const app = express();
 
-const dbString = '<seu mongoDB>';
+const dbString = 'mongodb+srv://danrigoni1:niel1982@cluster0-otwqj.mongodb.net/test?retryWrites=true&w=majority';
+
 
 if (dbString.startsWith('<')){
   let redStr = "\x1b[31m";
