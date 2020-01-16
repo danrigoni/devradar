@@ -1,21 +1,23 @@
 const { Router } = require('express');
-
-const DevController = require('./controllers/DevController');
-const SearchController = require('./controllers/SearchController');
-
-
+const DevController = require('./controllers/DevController')
+const SearchController = require('./controllers/SearchController')
 const routes = Router();
-// Methods http: GET, POST, PUT, DELETE
 
-// Parameter types: 
-// Query Params: req.query (filters, sorting, pagination, ...)
-// Route Params: request.params (identify a feature on put or delete)
-// Body:         Request.body (data for creating or changing a record)
+// Query: req.query
+// Route: req.params
+// Body : req.body
 
-// MondoDB (nonrelational)
-routes.get('/devs', DevController.index);
-routes.post('/devs', DevController.store);
 
-routes.get('/search', SearchController.index);
+routes
+
+    // DEVS Endpoint
+    .get('/devs', DevController.index)
+    .post('/devs', DevController.create)
+    .get('/devs/:github', DevController.read)
+    .put('/devs/:github', DevController.update)
+    .delete('/devs/:github', DevController.delete)
+
+    // SEARCH Endpoint
+    .get('/search', SearchController.index);
 
 module.exports = routes;

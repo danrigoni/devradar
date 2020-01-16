@@ -1,7 +1,0 @@
-// yarn add  / npm install 
-// yarn add express / npm install express
-// yarn add nodemon -d / npm install nodemon -d
-// yarn nodemon index.js  / npm nodemon index.js 
-// yarn dev
-// yarn add mongoose
-// yarn add axios

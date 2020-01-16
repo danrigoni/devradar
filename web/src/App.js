@@ -1,140 +1,83 @@
 import React, { useState, useEffect } from 'react';
+import api from './services/api';
 
-import './global.css'
-import './App.css'
-import './Sidebar.css'
-import './Main.css'
+import './global.css';
+import './App.css';
+import './Sidebar.css';
+import './Main.css';
 
-// component: isolated block of HTML, CSS, JS, which does not interfere with the rest of the application
-// property: information that a Father component passes to the Child component
-// state: information held by the component (remember: immutability)
+import DevItem from './components/DevItem'
+import DevForm from './components/DevForm'
+
+// Component  : Bloco isolado de HTML, CSS e JS, o qual não interfere no restante da aplicação (Obs.: Primeira Letra Maiúscula)
+// Propriedade: Informações que um componente "Pai" passa para o componente "Filho"
+// Estado     : Informações mantida pelo componente (Lembrar: imutabilidade)
 
 function App() {
-  const [latitude, setLatitude] =  useState('')
-  const [longitude, setLongitude] =  useState('')
-
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-
-        setLatitude(latitude);
-        setLongitude(longitude)
-      },
-      (err) => {
-        console.log(err);
-      },
-      {
-        timeout: 30000,
+    const editModeState = useState({editMode:false, dev:{}});
+    const [devs, setDevs] = useState([]);
+    const [{editMode}] = editModeState;
+  
+    // Load devs
+    useEffect(() => {
+      async function loadDevs(){
+        const response = await api.get('devs');
+      
+        setDevs(response.data.devs);
       }
+      loadDevs();
+    }, []);
+  
+    async function handleAddDev(data) {
+      const response = await api.post('devs', data);
+      const { data:newDev } = response;
+      let add = true;
+      for (let oldDev in devs)
+        if (devs[oldDev]._id===newDev._id)
+          add = false;
+      if (add) // Evitar adicionar duplicatas
+        setDevs([...devs, newDev]); // Spread para manter imutabilidade
+    }
+
+    async function handleEditDev(dev, data){
+      const { github } = dev;
+      const newDevs = devs.map(async dev => {
+        if (dev.github===github){
+            const response = await api.put(`devs/${github}`, data);
+            if (response.data.modifiedCount > 0){
+              const newDev = await api.get(`devs/${github}`);
+              return newDev.data;
+            }else 
+              return dev;
+        } else
+            return dev;
+      });
+      (async () => {
+        const resultado = await Promise.all(newDevs);
+        setDevs(resultado);
+      })();
+    }
+
+    async function handleDelDev(github) {
+      await api.delete(`devs/${github}`);
+      setDevs(devs.filter(dev=>dev.github!==github));
+    }
+  
+    return (
+      <div id="app">
+        <aside>
+          <strong>{editMode ? 'Editar':'Cadastrar'}</strong>
+          <DevForm onAdd={handleAddDev} onEdit={handleEditDev} editModeState={editModeState}/>
+        </aside>
+        <main>
+          <ul>
+            {devs.map(dev => (
+              <DevItem key={dev._id} dev={dev} onEdit={editModeState} onDelete={handleDelDev}/>
+            ))}
+          </ul>
+        </main>
+      </div>
     );
-  }, []) 
-
-  return (
-    <div id="app">
-      <aside>
-        <strong>Sing up</strong>
-        <form>
-
-          <div className="input-block">
-            <label htmlFor="github_username">GitHub Username</label>
-            <input name="github_username" id="github_username" required />
-          </div>
-
-
-          <div className="input-block">
-            <label htmlFor="techs">Techs</label>
-            <input name="techs" id="techs" required />
-          </div>
-
-          <div className="input-group">
-            <div className="input-block">
-              <label htmlFor="latitude">Latitude</label>
-              <input 
-              type="number" 
-              name="latitude" 
-              id="latitude" 
-              required 
-              value={latitude}
-              onChange={e => setLatitude(e.target.value)}
-            />
-            </div>
-
-            <div className="input-block">
-              <label htmlFor="longitude">Longitude</label>
-              <input 
-              type="number" 
-              name="longitude" 
-              id="longitude" 
-              required 
-              value={longitude} 
-              onChange={e => setLongitude(e.target.value)}
-              />
-            </div>
-          </div>
-          
-          <button type="submit">Save</button>
-        </form>
-      </aside>
-
-      <main>
-        <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
-              <div className="user-info">
-                <strong>Carlos Daniel Rigoni</strong>
-                <span>Node.js, ReactJS, React Native</span>
-
-              </div>
-            </header>
-            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
-            <a href="https://github.com/danrigoni">Access github profile</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
-              <div className="user-info">
-                <strong>Carlos Daniel Rigoni</strong>
-                <span>Node.js, ReactJS, React Native</span>
-
-              </div>
-            </header>
-            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
-            <a href="https://github.com/danrigoni">Access github profile</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
-              <div className="user-info">
-                <strong>Carlos Daniel Rigoni</strong>
-                <span>Node.js, ReactJS, React Native</span>
-
-              </div>
-            </header>
-            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
-            <a href="https://github.com/danrigoni">Access github profile</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars1.githubusercontent.com/u/59850567?s=460&v=4" alt="Carlos Daniel Rigoni"/>
-              <div className="user-info">
-                <strong>Carlos Daniel Rigoni</strong>
-                <span>Node.js, ReactJS, React Native</span>
-
-              </div>
-            </header>
-            <p>Passionate about technologies, lover of innovation and automation using Node.JS, React and React Native.</p>
-            <a href="https://github.com/danrigoni">Access github profile</a>
-          </li>
-        </ul>
-      </main>
-    </div>
-  );
 }
 
 export default App;
