@@ -4,8 +4,7 @@ const cors = require('cors');
 const routes = require('./routes');
 const app = express();
 
-const dbString = 'mongodb+srv://danrigoni1:niel1982@cluster0-otwqj.mongodb.net/test?retryWrites=true&w=majority';
-
+const dbString = `<INSIRA A LINHA DO BANCO AQUI>`;
 
 if (dbString.startsWith('<')){
   let redStr = "\x1b[31m";
