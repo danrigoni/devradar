@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  🚀 Semana OmniStack 10.0
+  Devradar
 </h4>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Rocketseat/semana-omnistack-10">
